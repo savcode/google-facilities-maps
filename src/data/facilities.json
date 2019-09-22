@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "lat": 54.349358,
+        "lng": 18.644412,
+        "name": "CH Forum",
+        "address": "Targ Sienny 7, 80-806 Gdańsk"
+    },
+    {
+        "id": 2,
+        "lat": 54.356305,
+        "lng": 18.649412,
+        "name": "CH Madison",
+        "address": "Rajska 10, 80-850 Gdańsk"
+    }
+]

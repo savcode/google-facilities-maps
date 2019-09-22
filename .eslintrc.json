@@ -1,0 +1,16 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+        "indent": ["error", 4]
+    },
+    "parser": "babel-eslint",
+    "plugins": [
+        "babel"
+    ],
+    "globals": {
+        "document": "readonly",
+        "fetch": "readonly",
+        "google": "readonly",
+        "MarkerClusterer": "readonly"
+    }
+}
