@@ -15,6 +15,7 @@ export default class FacilitiesList {
         this.map = map;
         this.list = list;
         this.filteredList = null;
+        this.selectedFacility = null;
     }
 
     init() {
@@ -23,24 +24,36 @@ export default class FacilitiesList {
             this.filteredList = this.list.filter(
                 (facility) => bounds.contains({ lat: facility.lat, lng: facility.lng }),
             );
-            DOMUtils.includeHTML(this.containerId, this.renderElements());
-
-            const facilitiesHtmlElements = document.querySelectorAll('.facility');
-            DOMUtils.addEvent(facilitiesHtmlElements, 'click', this.previewFacility);
+            this.updateList();
         });
     }
 
-    // eslint-disable-next-line class-methods-use-this
+    updateList = () => {
+        DOMUtils.includeHTML(this.containerId, this.renderElements());
+        const facilitiesHtmlElements = document.querySelectorAll('.facility');
+        DOMUtils.addEvent(facilitiesHtmlElements, 'click', this.previewFacility);
+    }
+
     previewFacility = (e) => {
         const { target } = e;
         const { id } = target.dataset;
         const facility = ObjectUtils.findObjectByValue(this.list, parseInt(id, 10));
-        console.log(facility);
+        this.selectedFacility = facility;
+        DOMUtils.includeHTML(this.containerId, this.renderPreview());
+        document.getElementById('back-from-preview').addEventListener('click', () => this.updateList());
     }
 
     renderElements() {
         return this.filteredList.map((element) => `
             <div class="facility" data-id="${element.id}">${element.name}</div>
         `).join('');
+    }
+
+    renderPreview() {
+        return `<div>
+            <a href="javascript:void(0)" id="back-from-preview">go back</a>
+            <h2>${this.selectedFacility.name}</h2>
+            <p>${this.selectedFacility.address}</p>
+        </div>`;
     }
 }
