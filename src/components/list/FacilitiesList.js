@@ -37,7 +37,7 @@ export default class FacilitiesList {
     previewFacility = (e) => {
         const { target } = e;
         const { id } = target.dataset;
-        const facility = ObjectUtils.findObjectByValue(this.list, parseInt(id, 10));
+        const facility = ObjectUtils.findObjectByValue(this.list, 'id', parseInt(id, 10));
         this.selectedFacility = facility;
         DOMUtils.includeHTML(this.containerId, this.renderPreview());
         document.getElementById('back-from-preview').addEventListener('click', () => this.updateList());
