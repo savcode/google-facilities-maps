@@ -16,16 +16,22 @@ export default class FacilitiesList {
         this.list = list;
         this.filteredList = null;
         this.selectedFacility = null;
+        this.previewMode = false;
     }
 
     init() {
         google.maps.event.addListener(this.map.map, 'bounds_changed', () => {
-            const bounds = this.map.map.getBounds();
-            this.filteredList = this.list.filter(
-                (facility) => bounds.contains({ lat: facility.lat, lng: facility.lng }),
-            );
+            if (this.previewMode) return;
+            this.filterFacilities();
             this.updateList();
         });
+    }
+
+    filterFacilities = () => {
+        const bounds = this.map.map.getBounds();
+        this.filteredList = this.list.filter(
+            (facility) => bounds.contains({ lat: facility.lat, lng: facility.lng }),
+        );
     }
 
     updateList = () => {
@@ -39,8 +45,20 @@ export default class FacilitiesList {
         const { id } = target.dataset;
         const facility = ObjectUtils.findObjectByValue(this.list, 'id', parseInt(id, 10));
         this.selectedFacility = facility;
+        this.previewMode = true;
+        this.map.map.setCenter({
+            lat: facility.lat,
+            lng: facility.lng,
+        });
+        this.map.map.setZoom(17);
         DOMUtils.includeHTML(this.containerId, this.renderPreview());
-        document.getElementById('back-from-preview').addEventListener('click', () => this.updateList());
+        document.getElementById('back-from-preview').addEventListener('click', () => this.backToList());
+    }
+
+    backToList = () => {
+        this.previewMode = false;
+        this.filterFacilities();
+        this.updateList();
     }
 
     renderElements() {

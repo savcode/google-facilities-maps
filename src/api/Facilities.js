@@ -1,4 +1,3 @@
-
 export default class FacilitiesApi {
     static async getFacilities() {
         const res = await fetch('/data/facilities.json');

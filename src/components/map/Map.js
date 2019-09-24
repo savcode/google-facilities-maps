@@ -31,6 +31,7 @@ export default class Map {
                     lng: position.coords.longitude,
                 };
                 this.map.setCenter(newCenter);
+                this.map.setZoom(8);
             }, () => {
                 // TODO: error handler
             });
