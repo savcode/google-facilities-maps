@@ -23,6 +23,18 @@ export default class Map {
             document.getElementById(this.containerId), this.initMapOptions,
         );
         this.initMarkers();
+
+        if (navigator.geolocation && navigator.geolocation.getCurrentPosition) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const newCenter = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                };
+                this.map.setCenter(newCenter);
+            }, () => {
+                // TODO: error handler
+            });
+        }
     }
 
     initMarkers() {
