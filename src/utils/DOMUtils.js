@@ -3,14 +3,15 @@ export default class DOMUtils {
      *
      *
      * @param {string} containerId
-     * @param {string} elements
+     * @param {*} elements
      */
     static includeHTML(containerId, elements) {
         const containerElement = document.getElementById(containerId);
-        containerElement.innerHTML = '';
+        const html = elements instanceof Array ? elements.join('') : elements;
 
+        containerElement.innerHTML = '';
         if (containerElement !== null) {
-            containerElement.insertAdjacentHTML('beforeend', elements);
+            containerElement.insertAdjacentHTML('beforeend', html);
         }
     }
 

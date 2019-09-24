@@ -46,7 +46,7 @@ export default class FacilitiesList {
     renderElements() {
         return this.filteredList.map((element) => `
             <div class="facility" data-id="${element.id}">${element.name}</div>
-        `).join('');
+        `);
     }
 
     renderPreview() {
