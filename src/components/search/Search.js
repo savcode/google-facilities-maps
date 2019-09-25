@@ -2,6 +2,7 @@ export default class Search {
     /**
      * Search constructor
      * @constructor
+     * @param {object} map
      * @param {string} elementId
      */
     constructor(map, elementId) {

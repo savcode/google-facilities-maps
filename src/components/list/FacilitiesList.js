@@ -44,8 +44,10 @@ export default class FacilitiesList {
         const { target } = e;
         const { id } = target.dataset;
         const facility = ObjectUtils.findObjectByValue(this.list, 'id', parseInt(id, 10));
+
         this.selectedFacility = facility;
         this.previewMode = true;
+
         this.mapComponent.map.setCenter({
             lat: facility.lat,
             lng: facility.lng,

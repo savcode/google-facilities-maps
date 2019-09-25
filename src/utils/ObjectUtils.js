@@ -1,6 +1,6 @@
 export default class ObjectUtils {
     /**
-     *
+     * Find object in array by value
      * @param {array} objArray
      * @param {string} key
      * @param {*} value

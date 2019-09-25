@@ -1,9 +1,8 @@
 export default class DOMUtils {
     /**
-     *
-     *
+     * Add html elements
      * @param {string} containerId
-     * @param {*} elements
+     * @param {string | string[]} elements
      */
     static includeHTML(containerId, elements) {
         const containerElement = document.getElementById(containerId);
@@ -16,8 +15,7 @@ export default class DOMUtils {
     }
 
     /**
-     *
-     *
+     * Call method after page is loaded
      * @param {function} callback
      */
     static loaded(callback) {
@@ -32,7 +30,7 @@ export default class DOMUtils {
     }
 
     /**
-     *
+     * Add event to elements array
      * @param {array} elementsArray
      * @param {string} event
      * @param {function} callback
