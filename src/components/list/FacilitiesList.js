@@ -7,12 +7,12 @@ export default class FacilitiesList {
      * FacilitiesList constructor
      * @constructor
      * @param {array} list
-     * @param {object} map
+     * @param {object} mapComponent
      * @param {string} containerId
      */
-    constructor(list, map, containerId) {
+    constructor(list, mapComponent, containerId) {
         this.containerId = containerId;
-        this.map = map;
+        this.mapComponent = mapComponent;
         this.list = list;
         this.filteredList = null;
         this.selectedFacility = null;
@@ -20,7 +20,7 @@ export default class FacilitiesList {
     }
 
     init() {
-        google.maps.event.addListener(this.map.map, 'bounds_changed', () => {
+        google.maps.event.addListener(this.mapComponent.map, 'bounds_changed', () => {
             if (this.previewMode) return;
             this.filterFacilities();
             this.updateList();
@@ -28,7 +28,7 @@ export default class FacilitiesList {
     }
 
     filterFacilities = () => {
-        const bounds = this.map.map.getBounds();
+        const bounds = this.mapComponent.map.getBounds();
         this.filteredList = this.list.filter(
             (facility) => bounds.contains({ lat: facility.lat, lng: facility.lng }),
         );
@@ -46,11 +46,11 @@ export default class FacilitiesList {
         const facility = ObjectUtils.findObjectByValue(this.list, 'id', parseInt(id, 10));
         this.selectedFacility = facility;
         this.previewMode = true;
-        this.map.map.setCenter({
+        this.mapComponent.map.setCenter({
             lat: facility.lat,
             lng: facility.lng,
         });
-        this.map.map.setZoom(17);
+        this.mapComponent.map.setZoom(17);
         DOMUtils.includeHTML(this.containerId, this.renderPreview());
         document.getElementById('back-from-preview').addEventListener('click', () => this.backToList());
     }
