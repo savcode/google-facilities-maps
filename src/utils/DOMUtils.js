@@ -8,8 +8,8 @@ export default class DOMUtils {
         const containerElement = document.getElementById(containerId);
         const html = elements instanceof Array ? elements.join('') : elements;
 
-        containerElement.innerHTML = '';
         if (containerElement !== null) {
+            containerElement.innerHTML = '';
             containerElement.insertAdjacentHTML('beforeend', html);
         }
     }
