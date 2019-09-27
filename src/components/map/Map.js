@@ -4,7 +4,7 @@ export default class Map {
     /**
      * Map constructor
      * @constructor
-     * @param {object} initMapOptions
+     * @param {Object} initMapOptions
      * @param {array} facilities
      * @param {string} containerId
      */

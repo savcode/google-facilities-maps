@@ -7,7 +7,7 @@ export default class FacilitiesList {
      * FacilitiesList constructor
      * @constructor
      * @param {array} list
-     * @param {object} map
+     * @param {Object} map
      * @param {string} containerId
      */
     constructor(list, map, containerId) {
