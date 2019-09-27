@@ -1,9 +1,5 @@
 import './Popup.scss';
 
-export default class Popup {
-    infoWindow = null
-
-    init() {
-        this.infoWindow = new google.maps.InfoWindow();
-    }
+export default function Popup() {
+    return new google.maps.InfoWindow();
 }

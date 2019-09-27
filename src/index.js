@@ -14,15 +14,13 @@ const App = () => {
     const facilitiesApi = FacilitiesApi.getFacilities();
     facilitiesApi.then((facilities) => {
         const popup = new Popup();
-        popup.init();
+        const mapComponent = new Map(Config.initOptions, facilities, popup, Config.mapElement);
+        mapComponent.init();
 
-        const map = new Map(Config.initOptions, facilities, popup.infoWindow, 'facilities-map');
-        map.init();
-
-        const facilitiesList = new FacilitiesList(facilities, map, 'facilities-list');
+        const facilitiesList = new FacilitiesList(facilities, mapComponent.map, Config.listElement);
         facilitiesList.init();
 
-        const search = new Search(map.map, 'facilities-autocomplete');
+        const search = new Search(mapComponent.map, Config.searchElement);
         search.init();
     });
 };

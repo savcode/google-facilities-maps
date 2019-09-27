@@ -2,5 +2,8 @@
     "initOptions": {
         "center": { "lat": 52.020837, "lng": 19.152629 },
         "zoom": 6
-    }
+    },
+    "mapElement": "facilities-map",
+    "listElement": "facilities-list",
+    "searchElement": "facilities-autocomplete"
 }

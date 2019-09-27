@@ -46,7 +46,7 @@ export default class Map {
 
             marker.addListener('click', () => {
                 this.infoWindow.setContent(facility.name);
-                this.infoWindow.open(this.map.map, marker);
+                this.infoWindow.open(this.map, marker);
             });
             return marker;
         });
