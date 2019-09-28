@@ -1,17 +1,25 @@
+// @flow
+
+declare var google: any;
+
 export default class Search {
+    elementId: string;
+    map: any;
+    autocomplete: any;
+
     /**
      * Search constructor
      * @constructor
-     * @param {object} map
+     * @param {Object} map
      * @param {string} elementId
      */
-    constructor(map, elementId) {
+    constructor(map: any, elementId: string): void {
         this.elementId = elementId;
         this.map = map;
         this.autocomplete = null;
     }
 
-    init() {
+    init(): void {
         const input = document.getElementById(this.elementId);
         this.autocomplete = new google.maps.places.Autocomplete(input);
 

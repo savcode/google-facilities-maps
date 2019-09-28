@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin');
 const config = require('./src/configuration/map.json');
 
 module.exports = {
@@ -47,6 +48,7 @@ module.exports = {
         new CopyPlugin([
             { from: 'src/data', to: 'data' },
         ]),
+        new FlowBabelWebpackPlugin(),
     ],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),

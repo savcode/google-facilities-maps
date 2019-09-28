@@ -1,14 +1,33 @@
+// @flow
+
 import './Map.scss';
 
+declare var google: any;
+declare var MarkerClusterer: any;
+
 export default class Map {
+    containerId: string;
+    initMapOptions: any;
+    facilities: Array<any>;
+    infoWindow: any;
+    map: any;
+    markers: any;
+    markerCluster: any;
+
     /**
      * Map constructor
      * @constructor
      * @param {Object} initMapOptions
-     * @param {array} facilities
+     * @param {Object[]} facilities
+     * @param {Object} infoWindow
      * @param {string} containerId
      */
-    constructor(initMapOptions, facilities, infoWindow, containerId) {
+    constructor(
+        initMapOptions: any,
+        facilities: Array<any>,
+        infoWindow: any,
+        containerId: string,
+    ): void {
         this.containerId = containerId;
         this.initMapOptions = initMapOptions;
         this.facilities = facilities;
@@ -18,7 +37,7 @@ export default class Map {
         this.markerCluster = null;
     }
 
-    init() {
+    init():void {
         this.map = new google.maps.Map(
             document.getElementById(this.containerId), this.initMapOptions,
         );
@@ -38,7 +57,7 @@ export default class Map {
         }
     }
 
-    initMarkers() {
+    initMarkers(): void {
         this.markers = this.facilities.map((facility) => {
             const marker = new google.maps.Marker({
                 position: { lat: facility.lat, lng: facility.lng },

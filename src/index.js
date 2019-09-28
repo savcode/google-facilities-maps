@@ -1,5 +1,7 @@
-// eslint-disable-next-line import/no-unresolved
-import Config from 'config';
+// @flow
+
+// $flow--config-file
+import Config from 'config'; // eslint-disable-line import/no-unresolved
 import FacilitiesList from './components/list/FacilitiesList';
 import Map from './components/map/Map';
 import Popup from './components/popup/Popup';
@@ -7,7 +9,7 @@ import DOMUtils from './utils/DOMUtils';
 import FacilitiesApi from './api/Facilities';
 import Search from './components/search/Search';
 
-const App = () => {
+const App = (): void => {
     /**
      * Init
      */
