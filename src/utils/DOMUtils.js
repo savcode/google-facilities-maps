@@ -30,8 +30,8 @@ export default class DOMUtils {
      * @param {string} event
      * @param {function} callback
      */
-    static addEvent(elementsArray: any, event: string, callback: (e: (Event)) => void): void {
-        elementsArray.forEach((element) => {
+    static addEvent(elementsArray: any, event: string, callback: (e: Event) => void): void {
+        [].forEach.call(elementsArray, (element) => {
             element.addEventListener(event, callback);
         });
     }
