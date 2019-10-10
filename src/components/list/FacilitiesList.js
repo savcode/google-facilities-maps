@@ -4,12 +4,14 @@ import DOMUtils from '../../utils/DOMUtils';
 import ObjectUtils from '../../utils/ObjectUtils';
 import './FacilitiesList.scss';
 
+import type { Facility } from '../../types/Facility';
+
 declare var google: any;
 
 export default class FacilitiesList {
     containerId: string;
     map: any;
-    list: Array<any>;
+    list: Array<Facility>;
     filteredList: Array<any>;
     selectedFacility: any;
     previewMode: boolean;
@@ -21,7 +23,7 @@ export default class FacilitiesList {
      * @param {Object} map
      * @param {string} containerId
      */
-    constructor(list: Array<any>, map: any, containerId: string): void {
+    constructor(list: Array<Facility>, map: any, containerId: string): void {
         this.containerId = containerId;
         this.map = map;
         this.list = list;

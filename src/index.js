@@ -5,9 +5,9 @@ import Config from 'config'; // eslint-disable-line import/no-unresolved
 import FacilitiesList from './components/list/FacilitiesList';
 import Map from './components/map/Map';
 import Popup from './components/popup/Popup';
+import Search from './components/search/Search';
 import DOMUtils from './utils/DOMUtils';
 import FacilitiesApi from './api/Facilities';
-import Search from './components/search/Search';
 
 const App = (): void => {
     /**

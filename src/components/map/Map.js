@@ -2,13 +2,15 @@
 
 import './Map.scss';
 
+import type { Facility } from '../../types/Facility';
+
 declare var google: any;
 declare var MarkerClusterer: any;
 
 export default class Map {
     containerId: string;
     initMapOptions: any;
-    facilities: Array<any>;
+    facilities: Array<Facility>;
     infoWindow: any;
     map: any;
     markers: any;
@@ -24,7 +26,7 @@ export default class Map {
      */
     constructor(
         initMapOptions: any,
-        facilities: Array<any>,
+        facilities: Array<Facility>,
         infoWindow: any,
         containerId: string,
     ): void {
