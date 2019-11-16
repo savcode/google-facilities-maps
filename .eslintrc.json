@@ -1,13 +1,17 @@
 {
-    "extends": "airbnb-base",
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
     "rules": {
         "indent": ["error", 4],
         "lines-between-class-members": "off"
     },
-    "parser": "babel-eslint",
+    "parser": "@typescript-eslint/parser",
     "plugins": [
         "babel",
-        "jest"
+        "jest",
+        "@typescript-eslint/eslint-plugin"
     ],
     "env": {
         "es6": true,

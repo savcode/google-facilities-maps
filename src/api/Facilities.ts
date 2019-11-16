@@ -1,5 +1,4 @@
-// @flow
-import type { Facility } from '../types/Facility';
+import { Facility } from '../types/Facility';
 
 /**
  * @class FacilitiesApi
@@ -11,9 +10,9 @@ export default class FacilitiesApi {
      * @method
      * @returns {Promise} Promise with facilities list
      */
-    static async getFacilities(): Promise<Array<Facility>> {
-        const res = await fetch('/data/facilities.json');
-        const facilities = await res.json();
+    static async getFacilities(): Promise<Facility[]> {
+        const res: Response = await fetch('/data/facilities.json');
+        const facilities: Facility[] = await res.json();
         return facilities;
     }
 }

@@ -1,48 +1,35 @@
-// @flow
-
 import './Map.scss';
 
-import type { Facility } from '../../types/Facility';
-
-declare var google: any;
-declare var MarkerClusterer: any;
+import { Facility } from '../../types/Facility';
+import Marker = google.maps.Marker;
+import FacilitiesList from '../list/FacilitiesList';
+import InfoWindow = google.maps.InfoWindow;
+import MapOptions = google.maps.MapOptions;
 
 export default class Map {
     containerId: string;
-    initMapOptions: any;
-    facilities: Array<Facility>;
-    infoWindow: any;
-    map: any;
-    markers: any;
-    markerCluster: any;
+    initMapOptions: MapOptions;
+    facilities: Facility[];
+    infoWindow: InfoWindow;
+    map: google.maps.Map;
+    markers: Marker[]|null;
+    markerCluster: MarkerClusterer|null;
+    facilitiesList: FacilitiesList|null;
 
-    /**
-     * Map constructor
-     * @constructor
-     * @param {Object} initMapOptions
-     * @param {Object[]} facilities
-     * @param {Object} infoWindow
-     * @param {string} containerId
-     */
-    constructor(
-        initMapOptions: any,
-        facilities: Array<Facility>,
-        infoWindow: any,
-        containerId: string,
-    ): void {
+    constructor(initMapOptions: MapOptions, facilities: Facility[], infoWindow: InfoWindow, containerId: string) {
         this.containerId = containerId;
         this.initMapOptions = initMapOptions;
         this.facilities = facilities;
         this.infoWindow = infoWindow;
-        this.map = null;
-        this.markers = null;
-        this.markerCluster = null;
-    }
-
-    init():void {
         this.map = new google.maps.Map(
             document.getElementById(this.containerId), this.initMapOptions,
         );
+        this.markers = null;
+        this.markerCluster = null;
+        this.facilitiesList = null;
+    }
+
+    init(): void {
         this.initMarkers();
 
         if (navigator.geolocation && navigator.geolocation.getCurrentPosition) {
@@ -59,15 +46,21 @@ export default class Map {
         }
     }
 
-    initMarkers(): void {
-        this.markers = this.facilities.map((facility) => {
-            const marker = new google.maps.Marker({
+    setFacilitiesList(facilitiesList: FacilitiesList): void {
+        this.facilitiesList = facilitiesList;
+    }
+
+    private initMarkers(): void {
+        this.markers = this.facilities.map((facility: Facility) => {
+            const marker: Marker = new google.maps.Marker({
                 position: { lat: facility.lat, lng: facility.lng },
             });
 
             marker.addListener('click', () => {
                 this.infoWindow.setContent(facility.name);
                 this.infoWindow.open(this.map, marker);
+
+                // TODO: open facility preview
             });
             return marker;
         });

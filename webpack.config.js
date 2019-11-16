@@ -1,11 +1,11 @@
+/* eslint-disable */
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin');
 const config = require('./src/configuration/map.json');
 
 module.exports = {
-    entry: ['babel-polyfill', './src/index.js'],
+    entry: ['./src/index.ts'],
     output: {
         filename: 'app.js',
         path: path.resolve(__dirname, 'dist'),
@@ -15,6 +15,11 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
             {
                 test: /\.m?js$/,
                 exclude: /(node_modules|bower_components)/,
@@ -41,6 +46,9 @@ module.exports = {
             },
         ],
     },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js']
+    },
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'style.css',
@@ -48,7 +56,6 @@ module.exports = {
         new CopyPlugin([
             { from: 'src/data', to: 'data' },
         ]),
-        new FlowBabelWebpackPlugin(),
     ],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
@@ -56,3 +63,4 @@ module.exports = {
         port: 9000,
     },
 };
+/* eslint-enable */

@@ -6,5 +6,5 @@
             ]
         }
     },
-    "presets": ["@babel/preset-flow"]
+    "presets": ["@babel/preset-typescript"]
 }
