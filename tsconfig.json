@@ -23,6 +23,7 @@
   ],
   "types": [
     "googlemaps",
-    "markerclustererplus"
+    "markerclustererplus",
+    "jest"
   ]
 }

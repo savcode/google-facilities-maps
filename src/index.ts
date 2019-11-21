@@ -13,11 +13,11 @@ const App = async (): Promise<void> => {
     const mapComponent: Map = new Map(Config.initOptions, facilities, popup, Config.mapElement);
     mapComponent.init();
 
-    const facilitiesList: FacilitiesList = new FacilitiesList(facilities, mapComponent.map, Config.listElement);
+    const facilitiesList: FacilitiesList = new FacilitiesList(facilities, mapComponent.getMap(), Config.listElement);
     facilitiesList.init();
     mapComponent.setFacilitiesList(facilitiesList);
 
-    const search: Search = new Search(mapComponent.map, Config.searchElement);
+    const search: Search = new Search(mapComponent.getMap(), Config.searchElement);
     search.init();
 };
 document.addEventListener('DOMContentLoaded', App);

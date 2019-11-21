@@ -7,12 +7,12 @@ import LatLngBounds = google.maps.LatLngBounds;
 import Map = google.maps.Map;
 
 class FacilitiesList {
-    containerId: string;
-    map: Map;
-    list: Facility[];
-    filteredList: Facility[];
-    selectedFacility: Facility|null;
-    previewMode: boolean;
+    private readonly containerId: string;
+    private readonly map: Map;
+    private readonly list: Facility[];
+    private filteredList: Facility[];
+    private selectedFacility: Facility|null;
+    private previewMode: boolean;
 
     constructor(list: Facility[], map: Map, containerId: string) {
         this.containerId = containerId;
@@ -23,7 +23,7 @@ class FacilitiesList {
         this.previewMode = false;
     }
 
-    init(): void {
+    public init(): void {
         google.maps.event.addListener(this.map, 'bounds_changed', () => {
             if (this.previewMode) return;
             this.filterFacilities();

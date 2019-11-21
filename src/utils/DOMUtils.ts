@@ -1,12 +1,10 @@
 export default class DOMUtils {
     /**
      * Add html elements
-     * @param {string} containerId
-     * @param {string | string[]} elements
      */
-    static includeHTML(containerId: string, elements: string | string[]): void {
+    public static includeHTML(containerId: string, elements: string | string[]): void {
         const containerElement: Element|null = document.getElementById(containerId);
-        const html: string = elements instanceof Array ? elements.join('') : elements;
+        const html: string = Array.isArray(elements) ? elements.join('') : elements;
 
         if (containerElement !== null) {
             containerElement.innerHTML = '';
@@ -20,7 +18,7 @@ export default class DOMUtils {
      * @param {string} event
      * @param {function} callback
      */
-    static addEvent(elementsArray: NodeListOf<Element>, event: string, callback: (e: Event) => void): void {
+    public static addEvent(elementsArray: NodeListOf<Element>, event: string, callback: (e: Event) => void): void {
         [].forEach.call(elementsArray, (element: Element) => {
             element.addEventListener(event, callback);
         });

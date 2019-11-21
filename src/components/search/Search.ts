@@ -4,9 +4,9 @@ import Map = google.maps.Map;
 import Autocomplete = google.maps.places.Autocomplete;
 
 export default class Search {
-    elementId: string;
-    map: Map;
-    autocomplete: Autocomplete|null;
+    private readonly elementId: string;
+    private map: Map;
+    private autocomplete: Autocomplete|null;
 
     constructor(map: Map, elementId: string) {
         this.elementId = elementId;
@@ -14,7 +14,7 @@ export default class Search {
         this.autocomplete = null;
     }
 
-    init(): void {
+    public init(): void {
         const input: Element|null = document.getElementById(this.elementId);
         if (input === null || !(input instanceof HTMLInputElement)) {
             return;

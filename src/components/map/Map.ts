@@ -7,14 +7,14 @@ import InfoWindow = google.maps.InfoWindow;
 import MapOptions = google.maps.MapOptions;
 
 export default class Map {
-    containerId: string;
-    initMapOptions: MapOptions;
-    facilities: Facility[];
-    infoWindow: InfoWindow;
-    map: google.maps.Map;
-    markers: Marker[]|null;
-    markerCluster: MarkerClusterer|null;
-    facilitiesList: FacilitiesList|null;
+    private readonly containerId: string;
+    private readonly initMapOptions: MapOptions;
+    private readonly facilities: Facility[];
+    private readonly infoWindow: InfoWindow;
+    private readonly map: google.maps.Map;
+    private markers: Marker[]|null;
+    private markerCluster: MarkerClusterer|null;
+    private facilitiesList: FacilitiesList|null;
 
     constructor(initMapOptions: MapOptions, facilities: Facility[], infoWindow: InfoWindow, containerId: string) {
         this.containerId = containerId;
@@ -29,7 +29,7 @@ export default class Map {
         this.facilitiesList = null;
     }
 
-    init(): void {
+    public init(): void {
         this.initMarkers();
 
         if (navigator.geolocation && navigator.geolocation.getCurrentPosition) {
@@ -46,8 +46,12 @@ export default class Map {
         }
     }
 
-    setFacilitiesList(facilitiesList: FacilitiesList): void {
+    public setFacilitiesList(facilitiesList: FacilitiesList): void {
         this.facilitiesList = facilitiesList;
+    }
+
+    public getMap() {
+        return this.map;
     }
 
     private initMarkers(): void {
